@@ -5,10 +5,8 @@ import (
 	"net/http"
 )
 
-var MiddlewareStopPropagationError = errors.New("MiddlewareStopPropagationError")
-
 type MiddlewareHandler interface {
-	ServeHTTP(w http.ResponseWriter, r *http.Request)
+	ServeHTTP(w http.ResponseWriter, r *http.Request) bool
 }
 
 type Middleware struct {
@@ -24,18 +22,10 @@ func CreateNewMiddleware() *Middleware {
 }
 
 func (m *Middleware) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	defer func() {
-		if r := recover(); r != nil {
-			if r != MiddlewareStopPropagationError {
-				panic(r)
-			}
-
+	for _, h := range m.handlers {
+		if !h.ServeHTTP(w, r) {
 			return
 		}
-	}()
-
-	for _, h := range m.handlers {
-		h.ServeHTTP(w, r)
 	}
 }
 
