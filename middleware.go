@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"errors"
 	"net/http"
 )
 
@@ -11,10 +10,6 @@ type MiddlewareHandler interface {
 
 type Middleware struct {
 	handlers []MiddlewareHandler
-}
-
-func StopPropagation() {
-	panic(MiddlewareStopPropagationError)
 }
 
 func CreateNewMiddleware() *Middleware {
