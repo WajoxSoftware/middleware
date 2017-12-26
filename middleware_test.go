@@ -1,23 +1,23 @@
 package middleware
 
 import (
-  "testing"
-  "net/http"
-  "net/http/httptest"
-  "bytes"
+	"bytes"
+	"net/http"
+	"net/http/httptest"
+	"testing"
 )
 
 var handlerStack []string
 
 type middlewareExample struct {
-	Name string
+	Name       string
 	ResultCode bool
 }
 
 func (m middlewareExample) ServeHTTP(w http.ResponseWriter, r *http.Request) bool {
-    handlerStack = append(handlerStack, m.Name)
+	handlerStack = append(handlerStack, m.Name)
 
-    return m.ResultCode
+	return m.ResultCode
 }
 
 func TestCreateNewMiddleware(t *testing.T) {
@@ -40,7 +40,7 @@ func TestAddHandler(t *testing.T) {
 			t.Error("Error", r)
 		}
 	}()
-	
+
 	handlerStack = []string{}
 
 	mware := CreateNewMiddleware()
@@ -55,10 +55,10 @@ func TestAddHandler(t *testing.T) {
 	mware.ServeHTTP(w, r)
 
 	if len(handlerStack) != 3 {
-    	t.Error("Incorrect number of used handlers")
+		t.Error("Incorrect number of used handlers")
 	}
 
-	if handlerStack[len(handlerStack) - 1] != "Third" {
+	if handlerStack[len(handlerStack)-1] != "Third" {
 		t.Error("Incorrect order")
 	}
 
