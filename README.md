@@ -59,27 +59,28 @@ type MiddlewareHandler interface {
 ## MiddlewareHandler example
 ```
 import (
-	"net/http"
+    "net/http"
 )
-
+// ...
 type Auth struct {
-	AuthToken string
+    AuthToken string
 }
 
 func CreateNewAuth(authToken string) *Auth {
-	return &Auth{authToken}
+    return &Auth{authToken}
 }
 
 func (a Auth) ServeHTTP(w http.ResponseWriter, r *http.Request) bool {
     isValidToken := a.AuthToken == r.URL.Query().Get("token")
 
     if (!isValidToken) {
-    	w.WriteHeader(403)
+        w.WriteHeader(403)
 
- 		return false
+        return false
     }
 
     return true
 }
+// ...
 
 ```
