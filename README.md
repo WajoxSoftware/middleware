@@ -14,9 +14,9 @@ go get github.com/WajoxSoftware/middleware
 
 # import package
 import (
-	// ... some packages
-	"github.com/WajoxSoftware/middleware"
-	// ... some packages
+    // ... some packages
+    "github.com/WajoxSoftware/middleware"
+    // ... some packages
 )
 
 ```
@@ -31,8 +31,8 @@ import (
 package main
 
 import (
-	// ... some packages
-	"github.com/WajoxSoftware/middleware"
+    // ... some packages
+    "github.com/WajoxSoftware/middleware"
 )
 
 // ... some code
@@ -48,11 +48,11 @@ mware.AddHandler(router)
 ## Definition of MiddlewareHandler interface
 ```
 import (
-	"net/http"
+    "net/http"
 )
 
 type MiddlewareHandler interface {
-	ServeHTTP(w http.ResponseWriter, r *http.Request)
+    ServeHTTP(w http.ResponseWriter, r *http.Request)
 }
 ```
 
