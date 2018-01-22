@@ -2,6 +2,7 @@ Lightweight middleware package
 ========================
 
 [![Build Status](https://travis-ci.org/WajoxSoftware/middleware.svg?branch=master)](https://travis-ci.org/WajoxSoftware/middleware)
+[![Maintainability](https://api.codeclimate.com/v1/badges/52f98da053fe04d96e6c/maintainability)](https://codeclimate.com/github/WajoxSoftware/middleware/maintainability)
 
 This is a Golang package, that implements middleware pattern.
 Just 37 lines of code.
